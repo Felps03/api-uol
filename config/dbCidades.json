@@ -1,0 +1,14 @@
+[
+	{"id":1,
+	 "nome": "cidade1", 
+	 "estado":"RS"
+	},
+	{"id":2,
+	 "nome": "cidade2", 
+	 "estado":"SP"
+	},
+	{"id":3,
+	 "nome": "cidade3", 
+	 "estado":"SC"
+	}
+]

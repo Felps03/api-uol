@@ -1,0 +1,23 @@
+[
+	{"id":1,
+	 "nome":"CLIENTE 1",
+	"sexo":"M",
+ 	"data_nascimento":"05/08/1996",
+ 	"idade":24,
+ 	"cidade":"cidade 1"
+ 	},
+	{"id":2,
+	 "nome":"CLIENTE 2",
+	"sexo":"F",
+ 	"data_nascimento":"12/06/1994",
+ 	"idade":26,
+ 	"cidade":"cidade 2"
+ 	},
+	{"id":3,
+	 "nome":"CLIENTE 3",
+	"sexo":"F",
+ 	"data_nascimento":"12/12/1992",
+ 	"idade":28,
+ 	"cidade":"cidade 1"
+ 	}
+]
