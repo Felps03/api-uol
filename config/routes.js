@@ -39,7 +39,7 @@ route.post('/cidade', (req,res)=>{
 		return res.status(400).end();
 	}
 	dbCidades.push({id:id, nome:req.body.nome, estado:req.body.estado});
-	res.send(dbCidades);
+	res.send({id:id, nome:req.body.nome, estado:req.body.estado});
 });
 
 route.get(['/cliente', '/cliente/', '/cliente/nome/:nome', '/cliente/:id'], (req,res)=>{
@@ -71,8 +71,25 @@ route.post('/cliente', (req,res)=>{
 	if( !req.body ){
 		return res.status(400).end();
 	}
+
+	if( !req.body.nome || !req.body.sexo || !req.body.data_nascimento || !req.body.idade || !req.body.cidade){
+		return res.status(400).send({
+			error:{
+					msg:'Campo obrigatório em branco!'
+			}
+		});
+	}
+
+	if( !['F','M'].includes(req.body.sexo.toUpperCase()) ){
+		return res.status(400).send({
+			error:{
+					msg:'Campo Sexo - Opção inválida!'
+			}
+		});
+	}
+
 	dbClientes.push({id:id, nome:req.body.nome, sexo:req.body.sexo, data_nascimento:req.body.data_nascimento, idade:req.body.idade,cidade:req.body.cidade});
-	res.send(dbClientes);
+	res.send({id:id, nome:req.body.nome, sexo:req.body.sexo, data_nascimento:req.body.data_nascimento, idade:req.body.idade,cidade:req.body.cidade});
 });
 
 route.put('/cliente/:id', (req,res)=>{
@@ -90,6 +107,21 @@ route.delete('/cliente/:id', (req,res)=>{
 	var index = dbClientes.findIndex((el)=>{ return el.id == req.params.id; });
 	dbClientes.splice(index,1);
 	res.send(dbClientes);
+});
+
+route.use((req,res, next)=>{
+	const erro = new Error('Rota não encontrada');	
+	erro.status = 404;
+	next(erro);
+});
+
+route.use((error,req,res, next)=>{
+	res.status(error.status|| 500);
+	return res.send({
+		erro:{
+			msg:error.message
+		}
+	});
 });
 
 module.exports = route;
