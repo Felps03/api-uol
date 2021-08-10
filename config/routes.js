@@ -34,7 +34,12 @@ route.get(['/cidade', '/cidade/', '/cidade/:nome', '/cidade/estado/:estado'], (r
 });
 
 route.post('/cidade', (req,res)=>{
-	var id = (dbCidades.length+1);
+	var id = 1;
+
+	if( dbCidades.length > 0 ){
+		var id = dbCidades[dbCidades.length-1].id + 1;
+	}
+
 	if( !req.body ){
 		return res.status(400).end();
 	}
@@ -65,8 +70,11 @@ route.get(['/cliente', '/cliente/', '/cliente/nome/:nome', '/cliente/:id'], (req
 });
 
 route.post('/cliente', (req,res)=>{
-	console.log(req.body, dbClientes.length, (dbClientes.length+1));
-	var id = (dbClientes.length+1);
+	var id = 1;
+
+	if( dbClientes.length > 0 ){
+		var id = dbClientes[dbClientes.length-1].id + 1;
+	}
 
 	if( !req.body ){
 		return res.status(400).end();
@@ -105,7 +113,11 @@ route.put('/cliente/:id', (req,res)=>{
 
 route.delete('/cliente/:id', (req,res)=>{
 	var index = dbClientes.findIndex((el)=>{ return el.id == req.params.id; });
-	dbClientes.splice(index,1);
+
+	if(index >= 0 ){
+		dbClientes.splice(index,1);
+	}
+
 	res.send(dbClientes);
 });
 
