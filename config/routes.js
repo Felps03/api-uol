@@ -10,7 +10,7 @@ var dbClientes = require('./dbClientes.json');
 // * Consultar cliente pelo nome (ok)
 // * Consultar cliente pelo Id (ok)
 // * Remover cliente(ok)
-// * Alterar o nome do cliente
+// * Alterar o nome do cliente(ok)
 route.get(['/cidade', '/cidade/', '/cidade/:nome', '/cidade/estado/:estado'], (req,res)=>{
 	var resultados = {};
 

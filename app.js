@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-//const fs = require('fs');
 const app = express();
 const routes = require('./config/routes');
 const port = 5151;
